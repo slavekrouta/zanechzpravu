@@ -1,12 +1,18 @@
 <?php
 if(isset($_POST['message']) && !empty($_POST['message'])) {
-    $usrname = $_POST['usrname'];
-    $message = $_POST['message'];
-    $time = date("Y-m-d h:i:s");
-    $text = $usrname . ":" . $message . " at " . $time . "<br>";
-    $file = fopen("index.html", "a") or die("Unable to open file!");
-    fwrite($file, $text);
-    fclose($file);
+    if(!empty($_POST['usrname'])) {
+        $usrname = $_POST['usrname'];
+        $message = $_POST['message'];
+        $time = date("Y-m-d h:i:s");
+        $text = "<p>" . $usrname . ": " . $message . " at " . $time . "</p>";
+        file_put_contents("index.html", $text, FILE_APPEND);
+    }
+    else{
+        $message = $_POST['message'];
+        $time = date("Y-m-d h:i:s");
+        $text = "<p>" . "Anonymious: " . $message . " at " . $time . "</p>";
+        file_put_contents("index.html", $text, FILE_APPEND);
+    }
 }
 else{
     echo "insert text in the message field!";
