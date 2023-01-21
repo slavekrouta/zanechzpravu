@@ -1,7 +1,23 @@
 <!DOCTYPE html>
-
-<form action="script.php" method="post">
+ČASOVÁ KAPSLE <a href="">Github Repositář zde</a>
+<form id="myForm">
 Jméno: <input type="text" name="usrname">
 Zpráva: <input type="text" name="message">
-<input type="submit" value="Odeslat">
+<input type=button onclick="submitForm()" value="Odeslat">
 </form>
+<script>
+function submitForm() {
+    var form = document.getElementById("myForm");
+    var data = new FormData(form);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "script.php", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            alert(xhr.responseText);
+            //redirect here
+            window.location.href = "https://zanechzpravu.000webhostapp.com/index.html";
+        }
+    };
+    xhr.send(data);
+}
+</script>
