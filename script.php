@@ -6,7 +6,7 @@ if(copy("index.html", $new_file_name)) {
 }
 if(isset($_POST['message']) && !empty($_POST['message'])) {
     echo "Ukládání...";
-    if(!empty($_POST['usrname'])) {
+    if($_POST['usrname'] !== "") {
         $usrname = $_POST['usrname'];
         $message = $_POST['message'];
         $time = date("Y-m-d");
